@@ -15,10 +15,10 @@ All your development environment in **HTTPS** with only 2 commands ! :sunglasses
 ## Whats's inside ? :monocle_face:
 
 - Caddy : https://caddyserver.com/v2
-- php-fpm
-- mariaDB 
+- PHP-FPM
+- MariaDB 
 - phpMyAdmin : Open `https://localhost:8888` to access it ( User: root | No password ( for the moment :scream: ))
 
 ## Credits
 
-Created by Théo Frison, inspired and taken in part from https://github.com/dunglas/symfony-docker.
+Created by Théo Frison, inspired and taken for some parts from https://github.com/dunglas/symfony-docker.
