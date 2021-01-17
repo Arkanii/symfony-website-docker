@@ -1,0 +1,1 @@
+After `docker-compose up` do `docker-compose run --rm php-fpm chown -R $(id -u):$(id -g) .`

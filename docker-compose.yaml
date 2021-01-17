@@ -1,0 +1,50 @@
+services:
+    caddy:
+        build:
+            context: docker/caddy
+        restart: unless-stopped
+        ports:
+            - "80:80"
+            - "443:443"
+            - "8888:8888"
+        volumes:
+            - $PWD/docker/caddy/Caddyfile:/etc/caddy/Caddyfile
+            - $PWD:/srv
+            - caddy_data:/data
+            - caddy_config:/config
+
+    php-fpm:
+        build:
+            context: docker/php-fpm
+        depends_on:
+            - database
+        volumes:
+            - $PWD:/srv
+        links:
+            - database
+
+    database:
+        image: 'mariadb:10'
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD:
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+            MYSQL_DATABASE: main
+        ports:
+            - '3306'
+
+    phpmyadmin:
+        build:
+            context: docker/phpmyadmin
+        restart: always
+        environment:
+            PMA_HOST: database
+            MYSQL_ROOT_PASSWORD:
+        depends_on:
+            - database
+        links:
+            - database
+
+volumes:
+    caddy_data:
+    caddy_config:
