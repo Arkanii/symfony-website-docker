@@ -27,9 +27,10 @@ services:
         image: 'mariadb:10'
         restart: always
         environment:
-            MYSQL_ROOT_PASSWORD:
-            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-            MYSQL_DATABASE: main
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD-root}
+            MYSQL_DATABASE: ${MYSQL_DATABASE-database}
+            MYSQL_USER: ${MYSQL_USER:-iamthebestdev}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD:-thebestpasswordoftheworld}
         ports:
             - '3306'
 
@@ -38,8 +39,11 @@ services:
             context: docker/phpmyadmin
         restart: always
         environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+            MYSQL_USER: ${MYSQL_USER:-iamthebestdev}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD:-thebestpasswordoftheworld}
             PMA_HOST: database
-            MYSQL_ROOT_PASSWORD:
+            UPLOAD_LIMIT: 50M
         depends_on:
             - database
         links:
