@@ -12,10 +12,15 @@ services:
             - $PWD:/srv
             - caddy_data:/data
             - caddy_config:/config
+        env_file:
+            - .env
 
     php-fpm:
         build:
             context: docker/php-fpm
+            args:
+                USER_ID: ${USER_ID:-0}
+                GROUP_ID: ${GROUP_ID:-0}
         depends_on:
             - database
         volumes:
