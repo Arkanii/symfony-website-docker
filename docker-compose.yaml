@@ -12,10 +12,15 @@ services:
             - $PWD:/srv
             - caddy_data:/data
             - caddy_config:/config
+        env_file:
+            - .env
 
     php-fpm:
         build:
             context: docker/php-fpm
+            args:
+                USER_ID: ${USER_ID:-0}
+                GROUP_ID: ${GROUP_ID:-0}
         depends_on:
             - database
         volumes:
@@ -26,12 +31,10 @@ services:
     database:
         image: 'mariadb:10'
         restart: always
-        environment:
-            MYSQL_ROOT_PASSWORD:
-            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-            MYSQL_DATABASE: main
         ports:
             - '3306'
+        env_file:
+            - .env
 
     phpmyadmin:
         build:
@@ -39,11 +42,13 @@ services:
         restart: always
         environment:
             PMA_HOST: database
-            MYSQL_ROOT_PASSWORD:
+            UPLOAD_LIMIT: 50M
         depends_on:
             - database
         links:
             - database
+        env_file:
+            - .env
 
 volumes:
     caddy_data:
