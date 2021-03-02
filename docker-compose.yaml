@@ -43,7 +43,7 @@ services:
         links:
             - database
         env_file:
-            - .env.local
+            - .env
 
 volumes:
     caddy_data:
