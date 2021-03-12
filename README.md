@@ -17,7 +17,7 @@ All your Symfony development environment in **HTTPS** with only 1 command ! :sun
 - Caddy : https://caddyserver.com/v2
 - PHP-FPM
 - MariaDB 
-- phpMyAdmin : Open `https://localhost:8888` to access it ( User: root | No password ( for the moment :scream: ))
+- phpMyAdmin : Open `https://localhost:8888` (By default) to access it (Do not forget to change credentials into .env)
 
 ## Credits
 

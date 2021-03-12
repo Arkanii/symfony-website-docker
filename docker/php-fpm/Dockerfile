@@ -82,9 +82,8 @@ RUN if [ ${USER_ID:-0} -ne 0 ] && [ ${GROUP_ID:-0} -ne 0 ]; then \
     /srv \
 ;fi
 
-USER www-data
-
 WORKDIR /srv
+USER www-data
 
 CMD ["php-fpm"]
 

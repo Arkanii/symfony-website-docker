@@ -38,7 +38,7 @@ localhost:443 {
     # https://caddyserver.com/docs/caddyfile
 }
 
-localhost:8888 {
+localhost:{$PORT_PHPMYADMIN} {
     # Enable access logging (to the console)
     log
 
