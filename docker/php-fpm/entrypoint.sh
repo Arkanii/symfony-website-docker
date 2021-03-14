@@ -3,8 +3,13 @@ set -e
 
 if [ ! -f composer.json ]; then
   ENV=$(cat .env)
+  VERSION=""
 
-  symfony new tmp --full --no-git
+  if [ "$SYMFONY_VERSION" != "" ]; then
+    VERSION="--version=$SYMFONY_VERSION"
+  fi
+
+  symfony new tmp --full --no-git $VERSION
   jq '.extra.symfony.docker=true' tmp/composer.json >tmp/composer.tmp.json
   rm tmp/composer.json
   mv tmp/composer.tmp.json tmp/composer.json

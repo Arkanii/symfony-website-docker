@@ -4,8 +4,7 @@ services:
             context: docker/caddy
         restart: unless-stopped
         ports:
-            - "80:80"
-            - "443:443"
+            - "${PORT_SYMFONY:-443}:${PORT_SYMFONY:-443}"
             - "${PORT_PHPMYADMIN:-8888}:${PORT_PHPMYADMIN:-8888}"
         volumes:
             - $PWD/docker/caddy/Caddyfile:/etc/caddy/Caddyfile
@@ -13,14 +12,17 @@ services:
             - caddy_data:/data
             - caddy_config:/config
         environment:
+            PORT_SYMFONY: ${PORT_SYMFONY:-443}
             PORT_PHPMYADMIN: ${PORT_PHPMYADMIN:-8888}
 
     php-fpm:
         build:
             context: docker/php-fpm
             args:
-                USER_ID: ${USER_ID:-0}
-                GROUP_ID: ${GROUP_ID:-0}
+                USER_ID: ${USER_ID}
+                GROUP_ID: ${GROUP_ID}
+        environment:
+            SYMFONY_VERSION: ${SYMFONY_VERSION:-}
         depends_on:
             - database
         volumes:

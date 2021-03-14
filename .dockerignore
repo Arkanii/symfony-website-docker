@@ -26,3 +26,5 @@ bin/*
 public/bundles/
 var/
 vendor/
+run.sh
+LICENSE

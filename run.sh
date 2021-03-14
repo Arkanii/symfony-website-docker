@@ -12,12 +12,12 @@ else
 fi
 
 declare USER_ID
+# shellcheck disable=SC2034
 USER_ID=$(id -u)
-declare GROUP_ID
-GROUP_ID=$(id -u)
 
-echo "$USER_ID"
-echo "$GROUP_ID"
+declare GROUP_ID
+# shellcheck disable=SC2034
+GROUP_ID=$(id -u)
 
 options=""
 
