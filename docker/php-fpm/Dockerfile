@@ -1,4 +1,5 @@
-FROM php:8-fpm-alpine
+ARG PHP_VERSION
+FROM php:${PHP_VERSION}-fpm-alpine
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
@@ -58,7 +59,7 @@ RUN set -eux; \
 	apk add --no-cache --virtual .phpexts-rundeps $runDeps; \
 	\
 	apk del .build-deps
-
+###
 
 RUN wget https://get.symfony.com/cli/installer -O - | bash
 RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
@@ -66,7 +67,6 @@ RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 COPY entrypoint.sh /usr/local/bin/entrypoint
 RUN chmod +x /usr/local/bin/entrypoint
 ENTRYPOINT ["entrypoint"]
-
 
 ARG USER_ID
 ARG GROUP_ID

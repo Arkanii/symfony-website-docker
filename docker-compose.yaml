@@ -12,6 +12,7 @@ services:
             - caddy_data:/data
             - caddy_config:/config
         environment:
+            HOST: ${HOST:-localhost}
             PORT_SYMFONY: ${PORT_SYMFONY:-443}
             PORT_PHPMYADMIN: ${PORT_PHPMYADMIN:-8888}
 
@@ -21,6 +22,7 @@ services:
             args:
                 USER_ID: ${USER_ID}
                 GROUP_ID: ${GROUP_ID}
+                PHP_VERSION: ${PHP_VERSION:-8}
         environment:
             SYMFONY_VERSION: ${SYMFONY_VERSION:-}
         depends_on:
@@ -31,7 +33,7 @@ services:
             - database
 
     database:
-        image: 'mariadb:10'
+        image: "mariadb:${MARIADB_VERSION:-10}"
         restart: always
         ports:
             - '3306'
