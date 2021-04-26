@@ -15,6 +15,7 @@ services:
             HOST: ${HOST:-localhost}
             PORT_SYMFONY: ${PORT_SYMFONY:-443}
             PORT_PHPMYADMIN: ${PORT_PHPMYADMIN:-8888}
+            TZ: ${TIMEZONE:-Europe/Paris}
 
     php-fpm:
         build:
@@ -25,6 +26,7 @@ services:
                 PHP_VERSION: ${PHP_VERSION:-8}
         environment:
             SYMFONY_VERSION: ${SYMFONY_VERSION:-}
+            TZ: ${TIMEZONE:-Europe/Paris}
         depends_on:
             - database
         volumes:
@@ -42,6 +44,7 @@ services:
             MYSQL_DATABASE: ${MYSQL_DATABASE:-symfony}
             MYSQL_USER: ${MYSQL_USER:-symfony}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD:-root}
+            TZ: ${TIMEZONE:-Europe/Paris}
 
     phpmyadmin:
         build:
@@ -53,6 +56,7 @@ services:
             MYSQL_PASSWORD: ${MYSQL_PASSWORD:-root}
             PMA_HOST: database
             UPLOAD_LIMIT: 50M
+            TZ: ${TIMEZONE:-Europe/Paris}
         depends_on:
             - database
         links:

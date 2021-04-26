@@ -30,7 +30,7 @@ Symfony (security + .env.local), Docker .env
 
 ### Can I use Symfony CLI into my project when docker-compose is lunched ?
 
-Dunno (need to test it)
+Dunno (need to test it) yes
 
 ## Credits
 
