@@ -8,8 +8,7 @@
 # this machine's public IP, then replace the line below with your
 # domain name.
 
-localhost:80,
-localhost:443 {
+localhost:{$PORT_SYMFONY} {
     # Enable access logging (to the console)
     log
 
@@ -38,7 +37,7 @@ localhost:443 {
     # https://caddyserver.com/docs/caddyfile
 }
 
-localhost:8888 {
+localhost:{$PORT_PHPMYADMIN} {
     # Enable access logging (to the console)
     log
 

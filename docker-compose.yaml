@@ -4,23 +4,28 @@ services:
             context: docker/caddy
         restart: unless-stopped
         ports:
-            - "80:80"
-            - "443:443"
-            - "8888:8888"
+            - "${PORT_SYMFONY:-443}:${PORT_SYMFONY:-443}"
+            - "${PORT_PHPMYADMIN:-8888}:${PORT_PHPMYADMIN:-8888}"
         volumes:
             - $PWD/docker/caddy/Caddyfile:/etc/caddy/Caddyfile
             - $PWD:/srv
             - caddy_data:/data
             - caddy_config:/config
-        env_file:
-            - .env
+        environment:
+            PORT_SYMFONY: ${PORT_SYMFONY:-443}
+            PORT_PHPMYADMIN: ${PORT_PHPMYADMIN:-8888}
+            TZ: ${TIMEZONE:-Europe/Paris}
 
     php-fpm:
         build:
             context: docker/php-fpm
             args:
-                USER_ID: ${USER_ID:-0}
-                GROUP_ID: ${GROUP_ID:-0}
+                USER_ID: ${USER_ID}
+                GROUP_ID: ${GROUP_ID}
+                PHP_VERSION: ${PHP_VERSION:-8}
+        environment:
+            SYMFONY_VERSION: ${SYMFONY_VERSION:-}
+            TZ: ${TIMEZONE:-Europe/Paris}
         depends_on:
             - database
         volumes:
@@ -29,26 +34,32 @@ services:
             - database
 
     database:
-        image: 'mariadb:10'
+        image: "mariadb:${MARIADB_VERSION:-10}"
         restart: always
         ports:
             - '3306'
-        env_file:
-            - .env
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-symfony}
+            MYSQL_DATABASE: ${MYSQL_DATABASE:-symfony}
+            MYSQL_USER: ${MYSQL_USER:-symfony}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD:-symfony}
+            TZ: ${TIMEZONE:-Europe/Paris}
 
     phpmyadmin:
         build:
             context: docker/phpmyadmin
         restart: always
         environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+            MYSQL_USER: ${MYSQL_USER:-symfony}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD:-symfony}
             PMA_HOST: database
             UPLOAD_LIMIT: 50M
+            TZ: ${TIMEZONE:-Europe/Paris}
         depends_on:
             - database
         links:
             - database
-        env_file:
-            - .env
 
 volumes:
     caddy_data:

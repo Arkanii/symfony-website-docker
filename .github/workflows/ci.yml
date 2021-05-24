@@ -18,9 +18,7 @@ jobs:
             -   uses: satackey/action-docker-layer-caching@v0.0.11
                 continue-on-error: true
             -   name: Start services
-                run: docker-compose up --build -d
-            -   name: Check Symfony HTTP reachability
-                run: curl http://localhost
+                run: ./run.sh --build -d
             -   name: Check Symfony HTTPS reachability
                 run: curl -k https://localhost
             -   name: Check phpMyAdmin reachability
