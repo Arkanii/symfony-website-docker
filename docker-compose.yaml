@@ -39,10 +39,10 @@ services:
         ports:
             - '3306'
         environment:
-            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-symfony}
             MYSQL_DATABASE: ${MYSQL_DATABASE:-symfony}
             MYSQL_USER: ${MYSQL_USER:-symfony}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD:-root}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD:-symfony}
             TZ: ${TIMEZONE:-Europe/Paris}
 
     phpmyadmin:
@@ -52,7 +52,7 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
             MYSQL_USER: ${MYSQL_USER:-symfony}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD:-root}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD:-symfony}
             PMA_HOST: database
             UPLOAD_LIMIT: 50M
             TZ: ${TIMEZONE:-Europe/Paris}
