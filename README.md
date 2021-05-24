@@ -39,7 +39,10 @@ If anyone has a better idea to avoid this file, don't hesitate to open a ticket 
 
 ### Can I use [Symfony CLI](https://symfony.com/doc/current/setup/symfony_server.html) into my project when docker-compose is lunched ?
 
-Of course, you can ! Just lunch `symfony serve` after `./run.sh -d` and open [https://127.0.0.1:8000](https://127.0.0.1:8000) (by default)
+Of course, you can ! 
+Just lunch `symfony serve` after `./run.sh -d` and open [https://127.0.0.1:8000](https://127.0.0.1:8000). (by default)
+
+If you decide to not use Symfony CLI, you need to explain the exact version of MariaDB you used in the `MARIADB_VERSION` variable.
 
 ### My web browser block my custom port !
 
