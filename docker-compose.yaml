@@ -12,7 +12,6 @@ services:
             - caddy_data:/data
             - caddy_config:/config
         environment:
-            HOST: ${HOST:-localhost}
             PORT_SYMFONY: ${PORT_SYMFONY:-443}
             PORT_PHPMYADMIN: ${PORT_PHPMYADMIN:-8888}
             TZ: ${TIMEZONE:-Europe/Paris}
