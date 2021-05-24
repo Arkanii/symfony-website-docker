@@ -41,6 +41,13 @@ If anyone has a better idea to avoid this file, don't hesitate to open a ticket 
 
 Of course, you can ! Just lunch `symfony serve` after `./run.sh -d` and open [https://127.0.0.1:8000](https://127.0.0.1:8000) (by default)
 
+### My web browser block my custom port !
+
+Check these links and look if your custom port is not reserved by your web browser.
+
+- Restricted ports from Chrome : [here](https://chromium.googlesource.com/chromium/src.git/+/refs/heads/main/net/base/port_util.cc#68)
+- Restricted ports from Mozilla : [here](https://www-archive.mozilla.org/projects/netlib/portbanning#portlist)
+
 ## Credits
 
 Created by Théo Frison, inspired and taken for some parts from [this project](https://github.com/dunglas/symfony-docker).
