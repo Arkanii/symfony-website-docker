@@ -3,13 +3,20 @@ set -e
 
 if [ ! -f composer.json ]; then
   ENV=$(cat .env)
-  VERSION=""
 
-  if [ "$SYMFONY_VERSION" != "" ]; then
-    VERSION="--version=$SYMFONY_VERSION"
+  if [ "$CUSTOM_REPOSITORY" != "" ]; then
+    git clone $CUSTOM_REPOSITORY tmp
+    rm -rf tmp/.git
+  else
+    VERSION=""
+
+    if [ "$SYMFONY_VERSION" != "" ]; then
+      VERSION="--version=$SYMFONY_VERSION"
+    fi
+
+    symfony new tmp --full --no-git $VERSION
   fi
 
-  symfony new tmp --full --no-git $VERSION
   jq '.extra.symfony.docker=true' tmp/composer.json >tmp/composer.tmp.json
   rm tmp/composer.json
   mv tmp/composer.tmp.json tmp/composer.json
@@ -20,8 +27,9 @@ if [ ! -f composer.json ]; then
   touch .env.local
   echo "$ENV" >.env.local
 
-  sed -i 's/DATABASE_URL="postgresql/# DATABASE_URL="postgresql/' .env
-  sed -i 's/- .env/- .env.local/' docker-compose.yaml
+  if [ "$CUSTOM_REPOSITORY" = "" ]; then
+    sed -i 's/DATABASE_URL="postgresql/# DATABASE_URL="postgresql/' .env
+  fi
 
 elif [ "$APP_ENV" != 'prod' ]; then
   rm -f .env.local.php

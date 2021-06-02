@@ -22,7 +22,7 @@ _(All those localhost links are valid if you let the .env by default.)_
 - MariaDB
 - phpMyAdmin
 
-## FAQ
+## Q&A
 
 ### Why use a run.sh into this template ?
 

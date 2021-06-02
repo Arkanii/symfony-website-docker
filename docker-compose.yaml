@@ -24,6 +24,7 @@ services:
                 GROUP_ID: ${GROUP_ID}
                 PHP_VERSION: ${PHP_VERSION:-8}
         environment:
+            CUSTOM_REPOSITORY: ${CUSTOM_REPOSITORY:-}
             SYMFONY_VERSION: ${SYMFONY_VERSION:-}
             TZ: ${TIMEZONE:-Europe/Paris}
         depends_on:
