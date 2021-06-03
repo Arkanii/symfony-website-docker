@@ -17,9 +17,14 @@ RUN apk add --update --no-cache \
 		postgresql \
 		bash \
 		shadow \
+		npm \
+		yarn \
+		openssh \
 	;
 
-ARG APCU_VERSION=5.1.19
+RUN npm install -g npm@latest
+
+ARG APCU_VERSION=5.1.20
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
 		$PHPIZE_DEPS \
@@ -83,7 +88,7 @@ RUN if [ ${USER_ID:-0} -ne 0 ] && [ ${GROUP_ID:-0} -ne 0 ]; then \
 ;fi
 
 WORKDIR /srv
-USER www-data
+#USER www-data
 
 CMD ["php-fpm"]
 
