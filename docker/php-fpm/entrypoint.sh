@@ -5,7 +5,7 @@ if [ ! -f composer.json ]; then
   ENV=$(cat .env)
 
   if [ "$CUSTOM_REPOSITORY" != "" ]; then
-    ISGIT=$(echo "git@github.com:Arkanii/arkanii.fr.git" | head -c4)
+    ISGIT=$(echo "${CUSTOM_REPOSITORY}" | head -c4)
 
     if [ "$ISGIT" = "git@" ]; then
       SSHKEYHOST=$(echo "${CUSTOM_REPOSITORY}" | sed 's/.*@\(.*\):.*/\1/' );
