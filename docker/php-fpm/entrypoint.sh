@@ -4,18 +4,15 @@ set -e
 if [ ! -f composer.json ]; then
   ENV=$(cat .env)
 
-
   if [ "$CUSTOM_REPOSITORY" != "" ]; then
+    ISGIT=$(echo "git@github.com:Arkanii/arkanii.fr.git" | head -c4)
 
-    if [ "$CUSTOM_REPOSITORY" != "" ]; then
-      ISGIT=$(echo "git@github.com:Arkanii/arkanii.fr.git" | head -c4)
-
-      if [ "$ISGIT" = "git@" ]; then
-        SSHKEYHOST=$(echo "${CUSTOM_REPOSITORY}" | sed 's/.*@\(.*\):.*/\1/' );
-        touch /root/.ssh/known_hosts
-        ssh-keyscan $SSHKEYHOST >> /root/.ssh/known_hosts
-        cat /root/.ssh/known_hosts
-      fi
+    if [ "$ISGIT" = "git@" ]; then
+      SSHKEYHOST=$(echo "${CUSTOM_REPOSITORY}" | sed 's/.*@\(.*\):.*/\1/' );
+      touch /root/.ssh/known_hosts
+      ssh-keyscan $SSHKEYHOST >> /root/.ssh/known_hosts
+      cat /root/.ssh/known_hosts
+    fi
 
     git clone $CUSTOM_REPOSITORY tmp
 
