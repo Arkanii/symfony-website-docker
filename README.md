@@ -22,7 +22,7 @@ _(All those localhost links are valid if you let the .env by default.)_
 - MariaDB
 - phpMyAdmin
 
-## FAQ
+## Q&A
 
 ### Why use a run.sh into this template ?
 
@@ -42,7 +42,7 @@ If anyone has a better idea to avoid this file, don't hesitate to open a ticket 
 Of course, you can ! 
 Just lunch `symfony serve` after `./run.sh -d` and open [https://127.0.0.1:8000](https://127.0.0.1:8000). (by default)
 
-If you decide to not use Symfony CLI, you need to explain the exact version of MariaDB you used in the `MARIADB_VERSION` variable.
+If you decide to not use Symfony CLI, you need to explain the exact version of [MariaDB](https://hub.docker.com/_/mariadb) you used in the `MARIADB_VERSION` variable.
 
 ### My web browser block my custom port !
 
