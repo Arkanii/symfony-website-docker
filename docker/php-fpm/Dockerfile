@@ -71,7 +71,6 @@ RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 COPY entrypoint.sh /usr/local/bin/entrypoint
 RUN chmod +x /usr/local/bin/entrypoint
-ENTRYPOINT ["entrypoint"]
 
 ARG USER_ID
 ARG GROUP_ID
@@ -87,9 +86,13 @@ RUN if [ ${USER_ID:-0} -ne 0 ] && [ ${GROUP_ID:-0} -ne 0 ]; then \
     /srv \
 ;fi
 
-WORKDIR /srv
-#USER www-data
+RUN mkdir /home/www-data/.ssh
+RUN chown -R www-data:www-data /home/www-data
 
+WORKDIR /srv
+USER www-data
+
+ENTRYPOINT ["entrypoint"]
 CMD ["php-fpm"]
 
 EXPOSE 9000
