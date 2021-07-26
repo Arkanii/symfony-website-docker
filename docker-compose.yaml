@@ -24,12 +24,16 @@ services:
                 GROUP_ID: ${GROUP_ID}
                 PHP_VERSION: ${PHP_VERSION:-8}
         environment:
+            CUSTOM_REPOSITORY: ${CUSTOM_REPOSITORY:-}
+            CUSTOM_REPOSITORY_WITH_GIT_DIR: ${CUSTOM_REPOSITORY_WITH_GIT_DIR:-0}
+            SSH_KEY_PATH: ${SSH_KEY_PATH:-}
             SYMFONY_VERSION: ${SYMFONY_VERSION:-}
             TZ: ${TIMEZONE:-Europe/Paris}
         depends_on:
             - database
         volumes:
             - $PWD:/srv
+            - ${SSH_KEY_PATH:-/dev/null}:/home/www-data/.ssh/id_rsa
         links:
             - database
 
