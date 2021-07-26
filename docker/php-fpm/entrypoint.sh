@@ -9,10 +9,8 @@ if [ ! -f composer.json ]; then
 
     if [ "$ISGIT" = "git@" ]; then
       SSHKEYHOST=$(echo "${CUSTOM_REPOSITORY}" | sed 's/.*@\(.*\):.*/\1/' );
-      ls -la /home/www-data
       touch /home/www-data/.ssh/known_hosts
       ssh-keyscan $SSHKEYHOST >> /home/www-data/.ssh/known_hosts
-      cat /home/www-data/.ssh/known_hosts
     fi
 
     git clone $CUSTOM_REPOSITORY tmp
