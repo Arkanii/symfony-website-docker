@@ -25,7 +25,7 @@ _(All those localhost links are valid if you let the .env by default.)_
 
 ## Variables available
 
-### Database and PhpMyAdmin
+### Database & phpMyAdmin
 
 - `MARIADB_VERSION` : Version of MariaDB. (Default: 10)
 - `MYSQL_DATABASE` : Name of the database. (Default: `symfony`)
@@ -34,13 +34,13 @@ _(All those localhost links are valid if you let the .env by default.)_
 - `MYSQL_PASSWORD` : User's password. Please use a strong password. (Default: `symfony`)
 - `PORT_PHPMYADMIN` : Port used for browser ([https://localhost:8888](https://localhost:8888) for example). (Default: 8888)
 
-### PHP and Symfony
+### PHP & Symfony
 
 - `PHP_VERSION` : PHP version. (Default: 8)
 - `SYMFONY_VERSION` : Version of Symfony.
 - `PORT_SYMFONY` : Port used for browser ([https://localhost:443](https://localhost:443) for example). (Default: 443)
 
-### GIT
+### GIT (If you want to use an existing Symfony project)
 
 - `CUSTOM_REPOSITORY` : Link of your git repository (git@github.com:Arkanii/symfony-website-docker.git or https://github.com/Arkanii/symfony-website-docker.git for example).
 - `CUSTOM_REPOSITORY_WITH_GIT_DIR` : If set to 1, this will replace the .git directory of the template by the .git directory located into the project located in the `CUSTOM_REPOSITORY` variable. (Default: 0)
