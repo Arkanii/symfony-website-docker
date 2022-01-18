@@ -1,3 +1,5 @@
+# I created [another project](https://github.com/Arkanii/symfovite) with all knowledge I learned on working on this project. I will focus on this one so I set this repository read-only.
+
 # Symfony Website Docker
 
 I learned Docker with [this](https://github.com/dunglas/symfony-docker) project, and I try to implement my own logic into this one.
